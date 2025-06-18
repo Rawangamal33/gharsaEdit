@@ -1,0 +1,81 @@
+.main-header {
+  color: black;
+  margin: 2rem 0;
+}
+.main-header h1{
+  text-align: center;
+}
+.main-header button {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  background-color: var(--main-color);
+  color: white;
+  padding: .8rem 1rem;
+  border-radius: 7px;
+  cursor: pointer;
+  font-family: var(--main-font);
+}
+
+.tableContainer {
+  background-color: white !important;
+  border-radius: 10px;
+  border: none;
+  box-shadow:  none !important;
+}
+tbody{
+  box-shadow: none !important;
+}
+.tableContainer .subhead {
+  background-color: white;
+  color:var(--main-color) !important;;
+}
+.tableContainer .subhead tr th {
+  font-family: var(--main-font);
+  color: var(--main-color) !important;
+  border-bottom: none;
+  font-weight: 400;
+  font-size: 18px;
+}
+.tableContainer .subhead tr th div{
+  text-align: center;
+}
+
+.tableContainer .subContent{
+  color: black;
+  
+}
+.tableContainer .subContent td{
+  color: black;
+  font-family: var(--main-font);
+  font-weight: bold;
+  text-align:center;
+  border-bottom: none;
+}
+.tableContainer .subContent td p{
+  text-align: center;
+  font-size: 12px;
+}
+.tableContainer .edit{
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  justify-content: center;
+
+}
+.tableContainer .edit button{
+  color: white;
+  background-color: transparent;
+  padding: 10px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: var(--accent);
+  border: 1px solid rgb(219, 219, 219);
+
+}
+.pagination {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

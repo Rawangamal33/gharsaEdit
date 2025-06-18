@@ -1,0 +1,52 @@
+.orderDetails {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+  gap: 5rem;
+  justify-content: center;
+
+  .clientInfo,
+  .orderInfo {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 7px;
+    border: 1px solid var(--main-color);
+
+    h3 {
+      color: var(--main-color);
+      margin-bottom: 1rem;
+    }
+    p{
+        margin-top: 10px;
+    }
+    span {
+      color: gray;
+    }
+  }
+
+  .orderInfo {
+    padding: 1rem 6rem 1rem 1rem;
+  }
+  .disabledButton {
+    cursor: not-allowed;
+    background-color: green;
+  }
+}
+
+.totalCost {
+  margin-top: 2rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 100%;
+  font-size: 25px;
+
+  p {
+    background-color: var(--main-color);
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-align: center;
+  }
+}

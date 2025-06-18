@@ -1,0 +1,103 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+@font-face {
+  font-family: "RH Zak";
+  src: url("./assets/RH-Zak-Reg.otf") format("truetype"); 
+  font-weight: normal;
+  font-style: normal;
+}
+:root{
+  --main-color: #6BB05F;
+  --main-font:"RH Zak", sans-serif;
+  
+}
+body {
+  direction: rtl;
+  text-align: right;
+  font-family: var(--main-font);
+}
+
+
+ul{
+  list-style: none;
+}
+
+a{
+  text-decoration: none;
+  color: inherit;
+}
+
+button{
+  border: none;
+}
+input,textarea,select,option{
+  outline: none;
+  font-family: var(--main-font);
+}
+input:focus{
+  border: none;
+}
+.custom-toaster {
+  font-family: var(--main-font);
+}
+.container {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/*small*/
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+
+/*Medium*/
+@media (min-width: 991px) {
+  .container {
+    width: 950px;
+  }
+}
+
+/*large*/
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+.--btn-group{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 1rem 0;
+}
+.--btn{
+  background-color: transparent;
+  border: 1px solid var(--main-color);
+  color: var(--main-color);
+  border-radius: 10px;
+  padding: 8px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  font-family: var(--main-font);
+}
+
+.--main-btn{
+  background-color: var(--main-color);
+  color: white;
+  padding: 10px 15px;
+}
+
+html ,body{
+  overflow-x: hidden;
+}
+.test{
+  color: rgb(255, 255, 255) !important;
+  background-color: rgb(51, 173, 64);
+  cursor: pointer;
+}

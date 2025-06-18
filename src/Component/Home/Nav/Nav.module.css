@@ -1,0 +1,91 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap");
+html,
+body {
+  font-family: "Noto Kufi Arabic", serif;
+}
+
+.navBar {
+  display: flex;
+  justify-content: space-evenly;
+  border-bottom: 2px solid #eee;
+  box-shadow: 2px 2px 9px -4px #333;
+}
+.navBar img {
+  margin-left: -6vw;
+}
+
+.inputIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -1vh;
+}
+
+.inputIcon input[type="search"] {
+  width: 25vw;
+  border: 1px solid #333;
+  padding: 8px;
+  font-size: 1.5rem;
+  border-radius: 10px;
+  background-color: transparent;
+  box-shadow: 2px 2px 9px -6px #333;
+}
+
+.inputIcon button {
+  background-color: transparent;
+  background-color: none;
+  border: none;
+  outline: none;
+  margin-left: -45px;
+  font-size: 1.5rem;
+  color: #333;
+  cursor: pointer;
+}
+.login {
+  margin-top: 2vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #6bb05f;
+  color: white;
+  text-decoration: none;
+  width: 130px; /* Adjust width as needed */
+  height: 49px; /* Set a fixed height */
+  border-radius: 50px; /* Optional for rounded corners */
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 5px 10px;
+  text-align: center;
+  margin-left: 1rem;
+  box-shadow: 2px 2px 9px -4px #333;
+  transition: background ease-in-out 0.5s;
+}
+.login:hover,
+.login:focus {
+  background-color: #78be6c;
+}
+.navBar ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border: 1px solid rgb(239, 235, 235);
+  border-radius: 30px;
+  box-shadow: 6px 2px 9px -4px #333;
+  width: 28vw;
+  margin-right: 9px;
+}
+
+.navBar ul li a {
+  text-decoration: none;
+  color: #6bb05f;
+  font-weight: 600;
+  margin: 2px;
+  font-size: 1.2rem;
+}
+.navBar ul li a:hover,
+.navBar ul li a:hover {
+  background-color: #6bb05f;
+  color: white;
+  border-radius: 10px;
+}
