@@ -38,7 +38,9 @@ const FirstSec = ({ search }) => {
           filteredSearchFav.slice(0, 4).map((item) => {
             return (
               <div key={item.id} className={styles.wholeItemFav}>
-                <img src={item.imageCover} alt={item.name} />
+                <NavLink to={`/read/${item.id}`}>
+                  <img src={item.imageCover} alt={item.name} />
+                </NavLink>
                 <p className={styles.itemNameFav}>
                   <NavLink
                     to={`/read/${item.id}`}

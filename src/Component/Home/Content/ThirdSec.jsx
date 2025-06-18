@@ -29,7 +29,9 @@ const ThirdSec = ({ data, search }) => {
           filteredSearchSales.slice(0, 4).map((item) => {
             return (
               <div key={item.id} className={styles.wholeItemSale}>
-                <img src={item.imageCover} alt={item.name} />
+                <NavLink to={`/read/${item.id}`}>
+                  <img src={item.imageCover} alt={item.name} />
+                </NavLink>
                 <p className={styles.itemNameSale}>
                   <NavLink
                     to={`/read/${item.id}`}

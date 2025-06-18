@@ -93,7 +93,9 @@ const MostSell = ({ data, search, loading, fetchError }) => {
             filteredSearchMost.map((item) => {
               return (
                 <div key={item.id} className={styles.wholeItemMost}>
-                  <img src={item.imageCover} alt={item.name} />
+                  <NavLink to={`/read/${item.id}`}>
+                    <img src={item.imageCover} alt={item.name} />
+                  </NavLink>
                   <p className={styles.itemNameMost}>
                     <NavLink
                       to={`/read/${item.id}`}
