@@ -13,6 +13,18 @@ const ProfileOrder = () => {
     clientPhone: "",
     address: "",
   });
+  const [errors, setErrors] = useState({
+    clientName: "",
+    clientPhone: "",
+    govern: "",
+    address: "",
+  });
+
+  // Regular expressions for validation
+  const nameRegex = /^[a-zA-Z\u0600-\u06FF\s]+$/; // Allows both English and Arabic letters
+  const phoneRegex = /^01[0125][0-9]{8}$/; // Egyptian phone numbers
+  const addressRegex = /^[a-zA-Z0-9\u0600-\u06FF\s\-.,]+$/; // Allows English, Arabic, numbers, and common address characters
+
   const itemsCart = cart.map((one) => ({
     productId: one.id,
     quantity: one.quantity,
@@ -23,8 +35,56 @@ const ProfileOrder = () => {
     items: itemsCart,
   };
   const navigate = useNavigate();
+
+  const validateInputs = () => {
+    let valid = true;
+    const newErrors = {
+      clientName: "",
+      clientPhone: "",
+      govern: "",
+      address: "",
+    };
+
+    if (!variables.clientName.trim()) {
+      newErrors.clientName = "الاسم مطلوب";
+      valid = false;
+    } else if (!nameRegex.test(variables.clientName)) {
+      newErrors.clientName = "الاسم يحتوي على حروف غير مسموح بها";
+      valid = false;
+    }
+
+    if (!variables.clientPhone.trim()) {
+      newErrors.clientPhone = "رقم الهاتف مطلوب";
+      valid = false;
+    } else if (!phoneRegex.test(variables.clientPhone)) {
+      newErrors.clientPhone = "رقم الهاتف يجب أن يكون رقم مصري صحيح (11 رقم)";
+      valid = false;
+    }
+
+    if (!govern.trim()) {
+      newErrors.govern = "المحافظة مطلوبة";
+      valid = false;
+    }
+
+    if (!variables.address.trim()) {
+      newErrors.address = "العنوان مطلوب";
+      valid = false;
+    } else if (!addressRegex.test(variables.address)) {
+      newErrors.address = "العنوان يحتوي على حروف غير مسموح بها";
+      valid = false;
+    }
+
+    setErrors(newErrors);
+    return valid;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!validateInputs()) {
+      return;
+    }
+
     setCart([]);
     try {
       const response = await axios.post(
@@ -32,14 +92,14 @@ const ProfileOrder = () => {
         requestBody
       );
       console.log(response.data);
-      alert("Payment Successful! Thank you for your purchase.");
+      alert("تم الدفع بنجاح! شكراً لشرائك.");
+      navigate("/");
     } catch (err) {
       console.log("Failed to create an order");
-      alert("Failed to create order. Please try again.");
+      alert("فشل في إنشاء الطلب. يرجى المحاولة مرة أخرى.");
     }
-
-    navigate("/");
   };
+
   return (
     <div>
       <header
@@ -89,6 +149,11 @@ const ProfileOrder = () => {
                   setVariables({ ...variables, clientName: e.target.value })
                 }
               />
+              {errors.clientName && (
+                <span style={{ color: "red", fontSize: "0.8rem" }}>
+                  {errors.clientName}
+                </span>
+              )}
             </div>
             <div>
               <label>رقم الهاتف</label>
@@ -100,6 +165,11 @@ const ProfileOrder = () => {
                   setVariables({ ...variables, clientPhone: e.target.value })
                 }
               />
+              {errors.clientPhone && (
+                <span style={{ color: "red", fontSize: "0.8rem" }}>
+                  {errors.clientPhone}
+                </span>
+              )}
             </div>
             <div>
               <label>المحافظة</label>
@@ -109,6 +179,11 @@ const ProfileOrder = () => {
                 value={govern}
                 onChange={(e) => setGovern(e.target.value)}
               />
+              {errors.govern && (
+                <span style={{ color: "red", fontSize: "0.8rem" }}>
+                  {errors.govern}
+                </span>
+              )}
             </div>
             <div>
               <label>العنوان تفصيلي</label>
@@ -120,6 +195,11 @@ const ProfileOrder = () => {
                   setVariables({ ...variables, address: e.target.value })
                 }
               />
+              {errors.address && (
+                <span style={{ color: "red", fontSize: "0.8rem" }}>
+                  {errors.address}
+                </span>
+              )}
             </div>
             <button type="submit">اتمام عمليه الشراء</button>
             <NavLink to="/read/:id/cart"> الغاء </NavLink>
