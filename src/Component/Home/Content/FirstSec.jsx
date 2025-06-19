@@ -2,16 +2,13 @@ import { NavLink } from "react-router-dom";
 import styles from "./Content.module.css";
 import { CiStar } from "react-icons/ci";
 import { FaShoppingCart } from "react-icons/fa";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { boolean } from "yup";
+import { FavouriteContext } from "../../Context/FavouriteProvider";
 
 const FirstSec = ({ search }) => {
-  const [favourites, setFavourites] = useState([]);
-  useEffect(() => {
-    const storedFavourites =
-      JSON.parse(localStorage.getItem("favourites")) || [];
-    setFavourites(storedFavourites);
-  }, []);
+  const { favourites } = useContext(FavouriteContext);
+
   const filteredSearchFav = favourites.filter((fav) => {
     return fav.name.toLowerCase().trim().includes(search.toLowerCase().trim());
   });
