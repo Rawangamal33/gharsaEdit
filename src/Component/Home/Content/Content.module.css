@@ -53,6 +53,7 @@
   width: 100%;
   gap: 10px;
   overflow: auto;
+  padding-bottom: 10px;
 }
 
 .favBar .wholeItemFav {
@@ -119,6 +120,7 @@
   width: 100%;
   gap: 10px;
   overflow: auto;
+  padding-bottom: 10px;
 }
 
 .mostBar .wholeItemMost {
@@ -185,6 +187,7 @@
   width: 100%;
   gap: 10px;
   overflow: auto;
+  padding-bottom: 10px;
 }
 
 .saleBar .wholeItemSale {
