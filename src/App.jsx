@@ -38,6 +38,7 @@ import ProfileOrder from "./Component/Home/Content/ProfileOrder";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserById } from "./redux/usersSlice";
 import ProtectedRouting from "./Component/ProtectedRouting/ProtectedRouting";
+import FavouriteProvider from "./Component/Context/FavouriteProvider";
 
 const Layout = () => {
   return (
@@ -75,14 +76,16 @@ function App() {
     {
       path: "",
       element: (
-        <CartProvider>
-          <Layout />
-        </CartProvider>
+        <FavouriteProvider>
+          <CartProvider>
+            <Layout />
+          </CartProvider>
+        </FavouriteProvider>
       ),
       children: [
-        { index: true, element:<Home />},
-        { path: "aboutUs", element: <AboutUs />  },
-        { path: "contactUs", element: <ContactUs />  },
+        { index: true, element: <Home /> },
+        { path: "aboutUs", element: <AboutUs /> },
+        { path: "contactUs", element: <ContactUs /> },
         { path: "/Register", element: <Register /> },
         { path: "ForgetPassword", element: <ForgetPassword /> },
         { path: "ResetPassword", element: <ResetPassword /> },
@@ -93,20 +96,28 @@ function App() {
         },
         {
           path: "/read/:id",
-          element: <ProductDetails />  , 
+          element: <ProductDetails />,
         },
         {
           path: "/read/:id/cart",
-          element:<CartPage />, 
+          element: <CartPage />,
         },
         {
           path: "/read/:id/cart/profile",
-          element: (<ProtectedRouting><ProfileOrder /></ProtectedRouting>  ) ,
+          element: (
+            <ProtectedRouting>
+              <ProfileOrder />
+            </ProtectedRouting>
+          ),
         },
         { path: "*", element: <NotFound /> },
         {
           path: "/admin",
-          element: (<ProtectedRouting><Admin /></ProtectedRouting>  ) ,
+          element: (
+            <ProtectedRouting>
+              <Admin />
+            </ProtectedRouting>
+          ),
           children: [
             { path: "my-group", element: <MyGroup /> },
             { path: "add-group", element: <AddNemGroup /> },

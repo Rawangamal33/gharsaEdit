@@ -4,7 +4,12 @@ import { FaShoppingCart } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { boolean } from "yup";
+import { useContext } from "react";
+import { FavouriteContext } from "../../Context/FavouriteProvider";
+import { FaTrashAlt } from "react-icons/fa";
 const Sales = ({ data, loading, fetchError, search }) => {
+  const { favourites, handleFavourite } = useContext(FavouriteContext);
+
   const filteredItems = useMemo(() => {
     return data.filter((item) => {
       return item.discount !== 0.0;
@@ -20,20 +25,6 @@ const Sales = ({ data, loading, fetchError, search }) => {
     });
   }, [search, filteredItems]);
 
-  const handleFavourite = (item) => {
-    let favourites = JSON.parse(localStorage.getItem("favourites")) || [];
-
-    if (!favourites.some((fav) => fav.id === item.id)) {
-      favourites.push(item);
-      alert("Item added to favourites ⭐");
-    } else {
-      favourites = favourites.filter((one) => {
-        return one.id !== item.id;
-      });
-      alert("Item deleted from favourites ⭐");
-    }
-    localStorage.setItem("favourites", JSON.stringify(favourites));
-  };
   return (
     <div
       className={styles.thirdSec}
@@ -89,6 +80,7 @@ const Sales = ({ data, loading, fetchError, search }) => {
         <div className={styles.saleBar}>
           {filteredSearchSales.length > 0 ? (
             filteredSearchSales.map((item) => {
+              const isFav = favourites.some((fav) => fav.id === item.id);
               return (
                 <div key={item.id} className={styles.wholeItemSale}>
                   <NavLink to={`/read/${item.id}`}>
@@ -120,14 +112,25 @@ const Sales = ({ data, loading, fetchError, search }) => {
                       متاح الان <FaShoppingCart />
                     </p>
                     <p>
-                      <FaStar
-                        style={{
-                          marginRight: "7px",
-                          color: "gold",
-                          cursor: "pointer",
-                        }}
-                        onClick={() => handleFavourite(item)}
-                      />
+                      {isFav ? (
+                        <FaTrashAlt
+                          style={{
+                            marginRight: "7px",
+                            color: "#BF0000",
+                            cursor: "pointer",
+                          }}
+                          onClick={() => handleFavourite(item)}
+                        />
+                      ) : (
+                        <FaStar
+                          style={{
+                            marginRight: "7px",
+                            color: "gold",
+                            cursor: "pointer",
+                          }}
+                          onClick={() => handleFavourite(item)}
+                        />
+                      )}
                       <span style={{ color: "#000" }}>السعر</span>:
                       {Number(item.price) - Number(item.discount)}
                       <del

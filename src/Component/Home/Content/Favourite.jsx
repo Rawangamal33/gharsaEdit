@@ -1,31 +1,17 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styles from "./Content.module.css";
 import { FaShoppingCart } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { boolean } from "yup";
+import { FavouriteContext } from "../../Context/FavouriteProvider";
+import { FaTrashAlt } from "react-icons/fa";
 
 // eslint-disable-next-line react/prop-types
 const Favourite = ({ search }) => {
-  const [favourites, setFavourites] = useState([]);
-
-  useEffect(() => {
-    const storedFavourites =
-      JSON.parse(localStorage.getItem("favourites")) || [];
-    setFavourites(storedFavourites);
-  }, []);
-
-  const handleDeleteFav = (item) => {
-    const remainingItems = filteredSearchFav.filter((fav) => {
-      return fav.id !== item.id;
-    });
-    alert("Item deleted");
-    setFavourites(remainingItems);
-    localStorage.setItem("favourites", JSON.stringify(remainingItems));
-  };
+  const { favourites, handleFavourite } = useContext(FavouriteContext);
 
   const filteredSearchFav = favourites.filter((fav) => {
-    // eslint-disable-next-line react/prop-types
     return fav.name.toLowerCase().trim().includes(search.toLowerCase().trim());
   });
 
@@ -80,13 +66,13 @@ const Favourite = ({ search }) => {
                     متاح الان <FaShoppingCart />
                   </p>
                   <p>
-                    <FaStar
+                    <FaTrashAlt
                       style={{
                         marginRight: "7px",
-                        color: "gold",
+                        color: "#BF0000",
                         cursor: "pointer",
                       }}
-                      onClick={() => handleDeleteFav(item)}
+                      onClick={() => handleFavourite(item)}
                     />
                     <span style={{ color: "#000" }}>السعر</span>:{" "}
                     {Number(item.price) - Number(item.discount)}

@@ -73,7 +73,7 @@ const Nav = ({ search, setSearch }) => {
       <div
         style={{
           fontSize: "50px",
-          margin: "5px -19px 0 19px",
+          margin: "12px -19px 0 19px",
           color: "#6BB05F",
           cursor: "pointer",
         }}
